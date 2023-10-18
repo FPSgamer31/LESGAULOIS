@@ -1,37 +1,20 @@
 package personnages;
 
+
+
 public class Gaulois {
 	private String nom;
 	private int force;
 	private int effetPotion = 1;
 	
 	public Gaulois(String nom, int force) {
-		super();
 		this.nom = nom;
 		this.force = force;
-	}
+		}
 	
 	public String getNom() {
 		return nom;
 		}
-
-
-	public int getForce() {
-		return force;
-	}
-
-	public void setForce(int force) {
-		this.force = force;
-	}
-
-	public int getEffetPotion() {
-		return effetPotion;
-	}
-
-	@Override
-	public String toString() {
-		return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion=" + effetPotion + "]";
-	}
 	
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "« " + texte + "»");
@@ -42,18 +25,31 @@ public class Gaulois {
 		}
 	
 	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la mâchoire de "
-		+ romain.getNom());
-		romain.recevoirCoup(force / 3);
+		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
+		romain.recevoirCoup((force / 3)*effetPotion);
 		}
-
 	
-	public static void main(String[] args) {
-		asterix (nom = "Astérix", force = 8)
-		System.out.println(asterix)
+	public void boirePotion(int forcePotion) {
+		effetPotion = forcePotion;
+		parler(" Merci Druide, je sens que ma force est "+effetPotion+" fois décuplée.");
 	}
 	
+	@Override
+	
+	public String toString() {
+		return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion=" + effetPotion + "]";
+	}
+	
+	public static void main(String[] args) {
+		Gaulois asterix = new Gaulois("asterix", 8);
+		System.out.println(asterix); 
+		asterix.parler("petite bite");
+		Romain BigusDickus = new Romain("BigusDickus", 6);
+		asterix.boirePotion(8);
+		asterix.frapper(BigusDickus);
+	}
 }
+
 
 
 
